@@ -1,0 +1,46 @@
+.menu-option {
+  display: flex;
+  align-items: center;
+  padding: 15px 25px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: linear-gradient(90deg, #ffffff 0%, #ffffff 100%);
+  position: relative;
+}
+
+.menu-option:hover {
+  background: linear-gradient(90deg, #ffffff,#aee676 );
+}
+
+.menu-label {
+  flex-grow: 1;
+  font-size: 1.4rem;
+  color: #333;
+}
+
+.menu-arrow {
+  display: none;
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.menu-option:hover .menu-arrow {
+  display: inline-block;
+}
+
+.logout-button {
+    background-color: #ff4d4d; /* Fondo rojo */
+    color: white; /* Texto blanco */
+    text-align: center; /* Centra el texto */
+    padding: 15px 20px; /* Asegura suficiente espacio interno */
+    border-radius: 12px; /* Esquinas redondeadas */
+    border: none; /* Elimina cualquier borde */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .logout-button:hover {
+    transform: scale(1.05); /* Agranda el botón ligeramente */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Aumenta la sombra */
+  }

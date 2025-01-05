@@ -1,0 +1,125 @@
+.dashboard-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('../assets/background-3.png'); /* Imagen de paisaje */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden; /* Asegura que las nubes que se mueven fuera no se vean */
+    position: relative; /* Necesario para las nubes animadas */
+    z-index: 0; 
+  }
+  
+  .background-clouds {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Detrás del contenido principal */
+  }
+  
+  .cloud {
+    position: absolute;
+    width: 150px; /* Tamaño de las nubes */
+    opacity: 0.8; /* Transparencia */
+  }
+  
+  .cloud1 {
+    animation: moveClouds 30s linear infinite;
+    animation-delay: 0s;
+    top: 10%; /* Posición vertical de la nube */
+    left: -200px; /* Empieza fuera de la pantalla */
+  }
+  
+  .cloud2 {
+    animation: moveClouds 30s linear infinite;
+    animation-delay: 4s;
+    top: 30%; /* Posición vertical */
+    left: -300px;
+  }
+  
+  .cloud3 {
+    animation: moveClouds 40s linear infinite;
+    animation-delay: 2s;
+    top: 50%; /* Posición vertical */
+    left: -250px;
+  }
+
+
+  /* Animación para mover las nubes de izquierda a derecha */
+  @keyframes moveClouds {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(120vw); /* Mueve las nubes fuera de la pantalla */
+    }
+  }
+  
+.menu-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los elementos horizontalmente */
+    justify-content: center; /* Centra los elementos verticalmente */
+    width: 400px; /* Ancho del menú */
+    max-width: 90%; /* Ajuste para pantallas pequeñas */
+    padding: 30px; /* Espaciado interno */
+    border-radius: 20px; /* Esquinas redondeadas */
+    border: 1px solid #555;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    text-align: center;
+  }
+  
+.menu-title {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #000000;
+    text-align: center; /* Centra el texto */
+  }
+  
+.menu-options {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los elementos horizontalmente */
+    gap: 15px; /* Espaciado entre las opciones */
+    width: 70%; /* Asegura que las opciones ocupen todo el ancho del menú */
+  }
+  
+.menu-option {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centra el contenido de cada opción */
+    padding: 10px 20px;
+    background-color: #f7f7f7; /* Fondo del rectángulo */
+    border: 1px solid #ddd; /* Borde suave */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    border: 1px solid #8a8a8a;
+    width: 100%; /* Asegura que se adapte al contenedor */
+  }
+  
+.menu-option:hover {
+    background-color: #eaf4fc; /* Cambio de color al hacer hover */
+/* Ligero aumento de tamaño */
+  }
+
+.menu-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+  }
+
+.menu-label {
+    flex-grow: 1; /* Permite que el texto ocupe el resto del espacio */
+    font-size: 1.2rem;
+    color: #000000;
+    text-align: left; /* Alinea el texto a la izquierda */
+    white-space: nowrap; /* Evita que el texto se rompa en varias líneas */
+  }

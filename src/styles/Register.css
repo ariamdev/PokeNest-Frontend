@@ -1,0 +1,180 @@
+.App {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('../assets/background.jpg'); /* Imagen de paisaje */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden; /* Asegura que las nubes que se mueven fuera no se vean */
+    position: relative; /* Necesario para las nubes animadas */
+    z-index: 0; 
+  }
+  
+  .background-clouds {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Detrás del contenido principal */
+  }
+  
+  .cloud {
+    position: absolute;
+    width: 150px; /* Tamaño de las nubes */
+    opacity: 0.8; /* Transparencia */
+  }
+  
+  .cloud1 {
+    animation: moveClouds 30s linear infinite;
+    animation-delay: 0s;
+    top: 10%; /* Posición vertical de la nube */
+    left: -200px; /* Empieza fuera de la pantalla */
+  }
+  
+  .cloud2 {
+    animation: moveClouds 30s linear infinite;
+    animation-delay: 4s;
+    top: 30%; /* Posición vertical */
+    left: -300px;
+  }
+  
+  .cloud3 {
+    animation: moveClouds 40s linear infinite;
+    animation-delay: 2s;
+    top: 50%; /* Posición vertical */
+    left: -250px;
+  }
+  
+  .cloud4 {
+    animation: moveClouds 35s linear infinite;
+    animation-delay: 3s;
+    top: 70%; /* Posición vertical */
+    left: -250px;
+  }
+  
+  /* Animación para mover las nubes de izquierda a derecha */
+  @keyframes moveClouds {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(120vw); /* Mueve las nubes fuera de la pantalla */
+    }
+  }
+  
+  .logo {
+    width: 200px; /* Tamaño del logotipo ajustado */
+    margin-bottom: 20px; /* Espacio entre el logotipo y el formulario */
+  }
+  
+  .login-container {
+    z-index: 2; /* Encima de las nubes */
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #555;
+    padding: 40px; /* Espacio interno suficiente para que los elementos no toquen los bordes */
+    border-radius: 20px; /* Esquinas cuadradas */
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
+    width: 350px; /* Ancho del contenedor */
+    max-width: 90%; /* Asegura que el contenedor no se desborde en pantallas pequeñas */
+    text-align: center;
+    box-sizing: border-box; /* Incluye el padding en el cálculo del ancho */
+  }
+
+  
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra todos los elementos del formulario */
+    justify-content: center;
+    width: 100%; /* Ocupa todo el ancho disponible */
+  }
+  
+  form div {
+    margin-bottom: 20px;
+    width: 100%; /* Asegura que los campos ocupen el ancho completo del contenedor */
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #000000;
+    text-align: left; /* Alinea las etiquetas a la izquierda */
+    width: 100%;
+  }
+  
+  input {
+    width: 100%; /* Asegura que los campos de texto ocupen todo el ancho disponible */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+  }
+  
+  button {
+    width: 100%; /* Asegura que el botón ocupe todo el ancho del contenedor */
+    padding: 10px;
+    background: linear-gradient(135deg, #395e15, #66AA22);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  button:hover {
+    background: linear-gradient(135deg,#66AA22,#66AA22 );
+  }
+
+  .error {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .success-container {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffffff; /* Fondo verde claro */
+    padding: 20px;
+    border: 1px solid #555;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-size: 16px;
+    z-index: 1000; /* Asegura que esté por encima del formulario */
+    width: 90%; /* Ocupa casi todo el ancho */
+    max-width: 600px; /* Límite máximo para pantallas grandes */
+    height: auto; /* Ajusta la altura automáticamente */
+    max-height: 90%; /* Asegura que no se desborde verticalmente */
+    overflow: auto; 
+  }
+
+  .success-title {
+    font-size: 24px; /* Tamaño del texto más grande */
+    font-weight: bold; /* Negrita para resaltar */
+    color: #000000; /* Color verde oscuro */
+    margin-bottom: 15px; /* Espacio debajo del texto */
+    text-align: center; /* Centra el texto */
+  }
+  
+  .loading-gif {
+    margin-top: 10px;
+    width: 100%;
+    max-width: 100px; /* Ajusta el tamaño del GIF */
+    border-radius: 8px; /* Opcional: bordes redondeados */
+  }

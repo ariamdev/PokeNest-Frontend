@@ -1,0 +1,171 @@
+
+.create-pokemon-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-image: url('../assets/bosque.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden; /* Asegura que las nubes que se mueven fuera no se vean */
+    position: relative; /* Necesario para las nubes animadas */
+    z-index: 0; 
+}
+
+.main-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    width: 95%;
+    max-width: 900px;
+    height: 80%;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    z-index: 0;
+}
+
+.main-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center; /* Centra el título */
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 20px; /* Asegura espacio entre los elementos */
+}
+
+/* Imagen a la izquierda */
+.image-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: left;
+}
+
+.nest-image {
+    width: 90%; /* Mantén el ancho original */
+    height: 90%; /* Mantén la altura original */
+    max-width: 100%;
+    padding-left: 5%;
+}
+
+/* Rectángulo alargado */
+.side-rectangle {
+    background-color: rgb(255, 255, 255);
+    width: 45%;
+    height: 70%;
+    border-radius: 5px;
+    border: 1px solid #555;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: auto;
+    margin-bottom: auto;
+    z-index: 1;
+    padding: 20px;
+}
+
+/* Formulario de alias */
+.alias-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra todos los elementos del formulario */
+    justify-content: center;
+    width: 90%; /* Ocupa todo el ancho disponible */
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    text-align: left; /* Alineado con los márgenes */
+    width: 90%;
+}
+
+.alias-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #000000;
+    text-align: left; /* Alinea las etiquetas a la izquierda */
+    width: 90%;
+    
+}
+
+.alias-input {
+    width: 90%; /* Asegura que los campos de texto ocupen todo el ancho disponible */
+    padding: 10px;
+    margin-bottom: 2px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+}
+
+.attention-text {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+    color: #5c5c5c; /* Rojo para resaltar atención */
+    text-align: left; /* Alineado con los márgenes */
+    width: 90%;
+}
+
+.species-form {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra todos los elementos del formulario */
+    justify-content: center;
+    width: 90%; 
+}
+
+.species-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #000000;
+    text-align: left; /* Alinea las etiquetas a la izquierda */
+    width: 90%; /* Alinea el texto con los márgenes */
+}
+
+.species-select {
+    width: 90%; /* Asegura que los campos de texto ocupen todo el ancho disponible */
+    padding: 10px;
+    margin-bottom: 2px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+}
+
+
+.create-button {
+    width: 90%; /* Asegura que el botón ocupe todo el ancho del contenedor */
+    padding: 10px;
+    background: linear-gradient(135deg, #395e15, #66AA22);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 30px;
+}
+
+.create-button:hover {
+    background: linear-gradient(135deg,#66AA22,#66AA22 );
+}
