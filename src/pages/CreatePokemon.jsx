@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import axios from 'axios';
 import '../styles/CreatePokemon.css';
 import nestImage from '../assets/nest.png'
-import PokemonDetails from '../pages/PokemonDetails.jsx';
 import { useNavigate } from 'react-router-dom';
 
 // Configurar el interceptor de Axios para incluir el token en las solicitudes
@@ -26,14 +25,20 @@ const CreatePokemon = () => {
             alert("Por favor, completa todos los campos.");
             return;
         }
-
+    
         try {
             const response = await axios.post("/pokenest/create", {
                 alias,
-                speciesName: species
+                speciesName: species,
             });
-            setCreatedPokemon(response.data); // Guarda los datos del Pokémon creado
-            navigate(`/pokenest/pokedetails`, { state: { pokemon: response.data } });
+    
+    
+            if (response.data && response.data.id) {
+                setCreatedPokemon(response.data);
+                navigate(`/pokenest/pokedetails`, { state: { pokemon: response.data } });
+            } else {
+                alert("Error: el backend no devolvió un ID válido.");
+            }
         } catch (error) {
             console.error("Error al crear el Pokémon:", error);
             if (error.response) {
@@ -109,7 +114,6 @@ const CreatePokemon = () => {
                                 onClick={handleCreatePokemon}>
                                 Crear Pokémon
                             </button>
-                            {createdPokemon && <PokemonDetails pokemon={createdPokemon} />}
                         </div>
                     </div>
                 </div>

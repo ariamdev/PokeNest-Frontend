@@ -13,6 +13,210 @@
     z-index: 0; 
 }
 
+.pokemon-types-container {
+    display: flex; /* Asegura que los tipos estén en línea */
+    gap:2px; /* Espaciado entre las imágenes */
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.type-image {
+    width: 35px; /* Ajusta el tamaño según tu diseño */
+    height: auto;
+    display: block; /* Asegura que la imagen sea visible */
+}
+
+.pokemon-fade-in {
+    opacity: 0;
+    animation: fadeIn 2s forwards; /* Duración del efecto de fundido */
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.evolution-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px; /* Ajusta el espacio interno */
+    border-radius: 5px;
+    border: 1px solid #555;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    text-align: center;
+    width: calc(100% - 10px); /* Ocupa todo el ancho disponible menos 10px */
+    max-width: 400px; /* Tamaño máximo opcional */
+    min-height: 350px; 
+    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+}
+
+.evolution-modal h3 {
+    margin-bottom: 10px;
+
+}
+
+.evolution-modal select {
+    margin-bottom: 15px;
+    padding: 5px;
+    width: calc(100% - 10px);
+    margin-left: 5px;
+    margin-right: 5px;
+    box-sizing: border-box;
+}
+
+.evolution-modal button {
+    margin: 5px;
+    padding: 10px 15px;
+    border: none;
+    background: #66AA22;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.2s;
+    width: calc(100% - 10px);
+    box-sizing: border-box;
+}
+
+.evolution-modal button:hover {
+    background: #558a1b;
+}
+
+
+.pokemon-species-image {
+    width: 60px;
+    height: auto;
+    padding: center;
+    padding-top: 40px;
+}
+
+.pokemon-species-image.training-image {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    margin-top: -20px; 
+    margin-bottom: 60px;/* Ajusta la posición vertical */
+}
+
+/* Imágenes de exploración */
+.pokemon-species-image.exploration-image {
+    width: 25px;
+    height: auto;
+    object-fit: contain;
+    margin-top: -10px;
+    margin-bottom: 50px; /* Ajusta la posición vertical */
+}
+
+/* Imágenes de dormir */
+.pokemon-species-image.sleeping-image {
+    width: 120px;
+    height: auto;
+    object-fit: contain;
+    margin-top: 0; /* Sin desplazamiento vertical */
+}
+
+.pokemon-species-image.heal-image {
+    width: 0px; /* Ajusta el ancho */
+    height: auto; /* Mantiene la proporción */
+    object-fit: contain;
+    margin-top: 10px; /* Ajusta la posición vertical */
+    margin-left: 20px; 
+}
+
+.pokemon-species-image.default-image {
+    width: 60px;
+    height: auto;
+    padding: center;
+    padding-top: 40px;
+}
+
+.healing-gif {
+    width: 20px; /* Tamaño del GIF */
+    height: auto; /* Mantiene la proporción */
+    padding-top: 10px;
+    padding-bottom: 70px;
+    padding-right: 50px;
+    padding-left: 50px;
+    animation: floatAndFade 5s ease-in-out forwards; /* Animación de flotación y desaparición */
+}
+
+.eating-gif-container {
+    position: absolute;
+    top: 30px; /* Ajusta la posición vertical */
+    left: 50%; /* Centra horizontalmente */
+    transform: translateX(-50%);
+    z-index: 10; /* Asegura que la imagen esté encima de la imagen del Pokémon */
+    pointer-events: none; /* Ignora eventos del ratón */
+}
+
+.eating-gif {
+    width: 50px; /* Tamaño del GIF */
+    height: auto; /* Mantiene la proporción */
+    padding-top: 50px;
+    padding-left: 20px;
+    animation: floatAndFade 5s ease-in-out forwards; /* Animación de flotación y desaparición */
+}
+
+.playing-gif-container {
+    position: absolute;
+    top: 30px; /* Ajusta la posición vertical */
+    left: 50%; /* Centra horizontalmente */
+    transform: translateX(-50%);
+    z-index: 10; /* Asegura que la imagen esté encima de la imagen del Pokémon */
+    pointer-events: none; /* Ignora eventos del ratón */
+}
+
+.playing-gif {
+    width: 20px; /* Tamaño del GIF */
+    height: auto; /* Mantiene la proporción */
+    padding-top: 50px;
+    animation: floatAndFade 5s ease-in-out forwards; /* Animación de flotación y desaparición */
+}
+
+/* Animación de flotación y desaparición */
+@keyframes floatAndFade {
+    0% {
+        opacity: 0; /* Comienza invisible */
+        transform: translateY(20px); /* Empieza más abajo */
+    }
+    10% {
+        opacity: 1; /* Aparece completamente */
+        transform: translateY(0); /* Flota hacia arriba */
+    }
+    90% {
+        opacity: 1; /* Permanece visible */
+        transform: translateY(-10px); /* Sigue flotando ligeramente */
+    }
+    100% {
+        opacity: 0; /* Desaparece */
+        transform: translateY(-20px); /* Se mueve hacia arriba antes de desaparecer */
+    }
+}
+
+.sleeping-gif-container {
+    position: absolute;
+    top: 30px; /* Ajusta la posición vertical */
+    left: 50%; /* Centra horizontalmente */
+    transform: translateX(-50%);
+    z-index: 10; /* Asegura que la imagen esté encima de la imagen del Pokémon */
+    pointer-events: none; /* Ignora eventos del ratón */
+}
+
+.sleeping-gif {
+    width: 40px; /* Tamaño del GIF */
+    height: auto; /* Mantiene la proporción */
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+
 .logo-image {
     width: 200px; /* Tamaño del logotipo ajustado */
     margin-bottom: 20px; /* Espacio entre el logotipo y el formulario */
@@ -162,13 +366,7 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     border: 2px solid black;
     overflow: hidden; /* Asegura que el contenido no desborde */
-}
-
-.pokemon-species-image {
-    width: 50px; /* Ajusta el tamaño de la imagen */
-    height: auto;
-    padding: center;
-    padding-top: 40px;
+    margin-top: 10px;
 }
 
 .pokemon-level {
@@ -255,10 +453,16 @@
 
 .happ-bar {
     height: 100%;
-    background-color: #4ca0af; /* Verde para el porcentaje */
+    background-color: #e27696; /* Verde para el porcentaje */
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     transition: width 0.3s ease;
 }
 
+.error-message {
+    color: red;
+    font-size: 0.9rem; /* Tamaño un poco más pequeño */
+    margin-top: 5px; /* Espaciado respecto al selector */
+    text-align: left; /* Alineación opcional */
+}
 

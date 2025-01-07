@@ -1,14 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import '../styles/PokemonDetails.css';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import pokeIcon from '../assets/poke.png';
 import logo from '../assets/logo.png';
+import axios from 'axios';
+
+const typeImages = {
+    Normal: require('../assets/types/normal.gif'),
+    Agua: require('../assets/types/agua.gif'),
+    Eléctrico: require('../assets/types/electrico.gif'),
+    Fuego: require('../assets/types/fuego.gif'),
+    Psíquico: require('../assets/types/psiquico.gif'),
+    Siniestro: require('../assets/types/siniestro.gif'),
+    Planta: require('../assets/types/planta.gif'),
+    Hielo: require('../assets/types/hielo.gif'),
+    Hada: require('../assets/types/hada.gif'),
+    Volador: require('../assets/types/volador.gif'),
+    Veneno: require('../assets/types/veneno.gif'),
+};
 
 const speciesImages = {
     Bulbasaur: require('../assets/pokemon/bulbasaur.gif'),
+    Ivysaur: require('../assets/pokemon/ivysaur.gif'),
+    Venusaur: require('../assets/pokemon/venusaur.gif'),
     Charmander: require('../assets/pokemon/charmander.gif'),
+    Charmeleon: require('../assets/pokemon/charmeleon.gif'),
+    Charizard: require('../assets/pokemon/charizard.gif'),
     Squirtle: require('../assets/pokemon/squirtle.gif'),
+    Wartortle: require('../assets/pokemon/wartortle.gif'),
+    Blastoise: require('../assets/pokemon/blastoise.gif'),
     Eevee: require('../assets/pokemon/eevee.gif'),
     Vaporeon: require('../assets/pokemon/vaporeon.gif'),
     Jolteon: require('../assets/pokemon/jolteon.gif'),
@@ -24,21 +45,314 @@ const locationBackgrounds = {
     CAVE: require('../assets/locations/cave.png'),
     FOREST: require('../assets/locations/forest.png'),
     LAKE: require('../assets/locations/lake.png'),
-    BEACH: require('../assets/locations/beach.png'),
+    BEACH: require('../assets/locations/beach1.jpg'),
     SNOW: require('../assets/locations/snow.png'),
-    POKECENTER: require('../assets/locations/pokecenter.png'),
+    POKECENTER: require('../assets/locations/PokeCenter2.png'),
     NOLIGHT: require('../assets/locations/nolight.png'),
     EXPLORE: require('../assets/locations/explore.png'),
+    BATTLEGROUND: require('../assets/locations/battleground.png'),
+    EVOLUTION: require('../assets/locations/evolution.png')
 };
+
+const trainingImages = {
+    Bulbasaur: require('../assets/training/bulbasaur-attack.gif'),
+    Ivysaur: require('../assets/training/ivysaur-attack.gif'),
+    Venusaur: require('../assets/pokemon/venusaur.gif'),
+    Charmander: require('../assets/training/charmander-attack.gif'),
+    Charmeleon: require('../assets/training/charmeleon-attack.gif'),
+    Charizard: require('../assets/training/charizard-attack2.gif'),
+    Squirtle: require('../assets/training/squirtle-attack.gif'),
+    Wartortle: require('../assets/training/wartortle-attack.gif'),
+    Blastoise: require('../assets/training/blastoise-attack.gif'),
+    Eevee: require('../assets/training/eevee-attack.gif'),
+    Vaporeon: require('../assets/training/vaporeon-attack.gif'),
+    Jolteon: require('../assets/pokemon/jolteon.gif'),
+    Flareon: require('../assets/training/flareon-attack.gif'),
+    Espeon: require('../assets/pokemon/espeon.gif'),
+    Umbreon: require('../assets/pokemon/umbreon.gif'),
+    Leafeon: require('../assets/training/leafeon-attack.gif'),
+    Glaceon: require('../assets/training/glaceon-attack.gif'),
+    Sylveon: require('../assets/pokemon/sylveon.gif'),
+};
+
+const explorationImages = {
+    Bulbasaur: require('../assets/explore/bulbasaur.gif'),
+    Ivysaur: require('../assets/explore/ivysaur.gif'),
+    Venusaur: require('../assets/explore/venusaur.gif'),
+    Charmander: require('../assets/explore/charmander.gif'),
+    Charmeleon: require('../assets/explore/charmaleon.gif'),
+    Charizard: require('../assets/explore/chaizard.gif'),
+    Squirtle: require('../assets/explore/squirtle.gif'),
+    Wartortle: require('../assets/explore/wartortle.gif'),
+    Blastoise: require('../assets/explore/blastoise.gif'),
+    Eevee: require('../assets/explore/eevee.gif'),
+    Vaporeon: require('../assets/explore/vaporeon.gif'),
+    Jolteon: require('../assets/explore/jolteon.gif'),
+    Flareon: require('../assets/explore/flareon.gif'),
+    Espeon: require('../assets/explore/espeon.gif'),
+    Umbreon: require('../assets/explore/umbreon.gif'),
+    Leafeon: require('../assets/explore/leafon.gif'),
+    Glaceon: require('../assets/explore/glaceon.gif'),
+    Sylveon: require('../assets/explore/espeon.gif'),
+};
+
+const sleepingImages = {
+    Bulbasaur: require('../assets/sleep/bulbasaur-sleep.png'),
+    Ivysaur: require('../assets/sleep/ivysaur-sleep.png'),
+    Venusaur: require('../assets/sleep/venusaur-sleep.png'),
+    Charmander: require('../assets/sleep/charmander-sleep.png'),
+    Charmeleon: require('../assets/sleep/charmaleon-sleep.png'),
+    Charizard: require('../assets/sleep/chaizard-sleep.png'),
+    Squirtle: require('../assets/sleep/squirtel-sleep.png'),
+    Wartortle: require('../assets/sleep/wartortle-sleep.png'),
+    Blastoise: require('../assets/sleep/blastoise-sleep.png'),
+    Eevee: require('../assets/sleep/Eevee-sleep.png'),
+    Vaporeon: require('../assets/sleep/vaporeon-sleep.png'),
+    Jolteon: require('../assets/sleep/jolteon-sleep.png'),
+    Flareon: require('../assets/sleep/flareon-sleep.png'),
+    Espeon: require('../assets/sleep/espeon-sleep.png'),
+    Umbreon: require('../assets/sleep/umbreon-sleep.png'),
+    Leafeon: require('../assets/sleep/leafeon-sleep.png'),
+    Glaceon: require('../assets/sleep/glaceon-sleep.png'),
+    Sylveon: require('../assets/sleep/sylveon-sleep.png'),
+};
+
+const interactionMap = {
+    Alimentar: { action: "FEED", endpoint: "/pokenest/update" },
+    Dormir: { action: "SLEEP", endpoint: "/pokenest/update" },
+    Jugar: { action: "PLAY", endpoint: "/pokenest/update" },
+    Entrenar: { action: "TRAIN", endpoint: "/pokenest/update" },
+    Explorar: { action: "EXPLORE", endpoint: "/pokenest/update" },
+    Curar: { action: "HEAL", endpoint: "/pokenest/update" },
+    "Eliminar Pokémon": { action: null, endpoint: "/pokenest/delete" },
+};
+
 
 const PokemonDetails = () => {
     const location = useLocation();
     const pokemon = location.state?.pokemon;
+    const navigate = useNavigate();
+    const [currentPokemon, setCurrentPokemon] = useState(pokemon);
+    const [temporaryBackground, setTemporaryBackground] = useState(locationBackgrounds[pokemon.location]);
+    const [temporaryImage, setTemporaryImage] = useState(speciesImages[pokemon.species]);
+    const [isSleeping, setIsSleeping] = useState(currentPokemon.sleeping || false);
+    const [isEating, setIsEating] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [isHealing, setIsHealing] = useState(false);
+    const [isEvolving, setIsEvolving] = useState(false);
+    const [evolutionTarget, setEvolutionTarget] = useState("");
+    const [errorMessage, setErrorMessage] = useState(""); 
+    
+    const renderEvolutionModal = () => (
+        <div className="evolution-modal">
+            <h3>Selecciona la Evolución</h3>
+            <select
+                value={evolutionTarget}
+                onChange={(e) => setEvolutionTarget(e.target.value)}
+            >
+                <option value="">Selecciona una evolución...</option>
+                <option value="Vaporeon">Vaporeon</option>
+                <option value="Jolteon">Jolteon</option>
+                <option value="Flareon">Flareon</option>
+                <option value="Espeon">Espeon</option>
+                <option value="Umbreon">Umbreon</option>
+                <option value="Leafeon">Leafeon</option>
+                <option value="Glaceon">Glaceon</option>
+                <option value="Sylveon">Sylveon</option>
+            </select>
+            {errorMessage && (
+                <p className="error-message">{errorMessage}</p> // Renderiza el mensaje de error
+            )}
+            <button onClick={handleEvolution}>Confirmar</button>
+            <button onClick={() => setIsEvolving(false)}>Cancelar</button>
+        </div>
+    );
+   
+    
+    const handleEvolution = async () => {
+        if (!evolutionTarget) {
+            setErrorMessage("Por favor, selecciona una evolución.");
+            return;
+        }
+        setErrorMessage("");
+    
+        const confirmEvolution = window.confirm(
+            `¿Estás seguro de que deseas evolucionar a Eevee a ${evolutionTarget}? Esta acción es irreversible.`
+        );
+        if (!confirmEvolution) return;
+    
+        try {
+            // Construir URL con el parámetro `targetSpecies`
+            const url = `/pokenest/update/eev?targetSpecies=${evolutionTarget}`;
+    
+            // Datos a enviar en el cuerpo
+            const data = { id: currentPokemon.id };
+    
+            // Realizar la solicitud POST
+            const response = await axios.post(url, data);
+    
+            // Actualizar el estado con los nuevos datos del Pokémon
+            const updatedPokemon = response.data;
 
-    if (!pokemon) return <p>No se proporcionaron detalles del Pokémon.</p>;
+            setTemporaryBackground(locationBackgrounds.EVOLUTION);
+            setTemporaryImage(speciesImages[updatedPokemon.species]);
 
-    const speciesImage = speciesImages[pokemon.species]; 
-    const locationBackground = locationBackgrounds[pokemon.location];
+            const pokemonImage = document.querySelector(".pokemon-species-image");
+            if (pokemonImage) {
+                pokemonImage.classList.add("pokemon-fade-in");
+            }
+    
+            setTimeout(() => {
+                // Actualizar a la nueva especie y fondo
+                setTemporaryBackground(locationBackgrounds[updatedPokemon.location]);
+                setTemporaryImage(speciesImages[updatedPokemon.species]);
+                setCurrentPokemon(updatedPokemon); // Actualizar el Pokémon
+    
+                // Quitar la clase de fundido
+                if (pokemonImage) {
+                    pokemonImage.classList.remove("pokemon-fade-in");
+                }
+    
+                setIsEvolving(false); // Cierra el modal
+            }, 2000); // 5 segundos para mostrar la animación
+        } catch (error) {
+            console.error("Error al evolucionar el Pokémon:", error);
+            alert("No se pudo evolucionar al Pokémon. Inténtalo nuevamente.");
+        }
+    };
+
+    const handleInteraction = async (interaction) => {
+
+        if (isSleeping) {
+            alert("Tu Pokémon está durmiendo y no puede realizar otras acciones hasta que se despierte.");
+            return;
+        }
+
+        try {
+            const { action, endpoint } = interactionMap[interaction];
+
+            // Construir URL con el parámetro `petInteraction`
+            const url = action ? `${endpoint}?petInteraction=${action}` : endpoint;
+            const data = { id: currentPokemon.id }; // ID en el cuerpo de la solicitud
+
+            if (interaction === "Eliminar Pokémon") {
+                const confirmDelete = window.confirm("¿Estás seguro de que deseas eliminar este Pokémon?");
+                if (!confirmDelete) {
+                    return;
+                }
+    
+                try {
+                    await axios.delete('/pokenest/delete', { data: { id: currentPokemon.id } });
+                    navigate('/user-dashboard');
+                } catch (error) {
+                    console.error("Error al eliminar el Pokémon:", error);
+                    alert("No se pudo eliminar el Pokémon. Inténtalo nuevamente.");
+                }
+            }
+
+            const response = await axios.post(url, data);
+            const updatedPokemon = response.data; 
+
+            if (updatedPokemon.species !== currentPokemon.species) {
+                setTemporaryBackground(locationBackgrounds.EVOLUTION);
+                setTemporaryImage(speciesImages[updatedPokemon.species]);
+
+                const pokemonImage = document.querySelector(".pokemon-species-image");
+
+            if (pokemonImage) {
+                pokemonImage.classList.add("pokemon-fade-in");
+            }
+    
+            setTimeout(() => {
+                setTemporaryBackground(locationBackgrounds[updatedPokemon.location]);
+                setTemporaryImage(speciesImages[updatedPokemon.species]);
+                setCurrentPokemon(updatedPokemon); // Actualizar el Pokémon
+    
+                // Quitar la clase de fundido
+                if (pokemonImage) {
+                    pokemonImage.classList.remove("pokemon-fade-in");
+                }
+    
+                setIsEvolving(false); // Cierra el modal
+            }, 2000);
+            }
+
+            if (interaction === "Alimentar") {
+                setIsEating(true); // Muestra el GIF de "Comer"
+
+                setTimeout(() => {
+                    setIsEating(false);
+                }, 10000); // 10 segundos
+            }
+
+            if (interaction === "Dormir") {
+                setIsSleeping(true); 
+                setTemporaryImage(sleepingImages[currentPokemon.species]);
+            
+                setTimeout(() => {
+                    setIsSleeping(false);
+                    setTemporaryImage(speciesImages[currentPokemon.species]);
+                }, 10000);
+            }
+
+            if (interaction === "Jugar") {
+                setIsPlaying(true); 
+
+                setTimeout(() => {
+                    setIsPlaying(false);
+                }, 10000); // 10 segundos
+            }
+
+            if (interaction === "Entrenar") {
+                setTemporaryBackground(locationBackgrounds.BATTLEGROUND); // Cambia la ubicación al campo de batalla
+                setTemporaryImage(trainingImages[currentPokemon.species]); // Cambia la imagen al entrenamiento
+            
+                // Restaurar después de 20 segundos
+                setTimeout(() => {
+                    setTemporaryBackground(locationBackgrounds[currentPokemon.location]); // Restaura la ubicación
+                    setTemporaryImage(speciesImages[currentPokemon.species]); // Restaura la imagen
+                }, 6000); // 20 segundos
+            }
+
+            if (interaction === "Explorar") {
+                setTemporaryBackground(locationBackgrounds.EXPLORE);          
+                setTemporaryImage(explorationImages[currentPokemon.species]);
+            
+                // Restaurar después de 30 segundos
+                setTimeout(() => {
+                    setTemporaryBackground(locationBackgrounds[currentPokemon.location]);
+                    setTemporaryImage(speciesImages[currentPokemon.species]);
+                }, 6000); // 30 segundos
+            }
+
+            if (interaction === "Curar") {
+                // Cambiar localización e imagen temporalmente
+                setTemporaryBackground(locationBackgrounds.POKECENTER);
+                setTemporaryImage(require('../assets/poke.png'));
+                setIsHealing(true); // Activa el GIF de curación
+            
+                setTimeout(() => {
+                    setTemporaryBackground(locationBackgrounds[currentPokemon.location]); // Restaura la ubicación original
+                    setTemporaryImage(speciesImages[currentPokemon.species]); // Restaura la imagen original
+                    setIsHealing(false); // Oculta el GIF después de 10 segundos
+                }, 6000); // 10 segundos
+            }
+
+          
+
+        setCurrentPokemon(updatedPokemon);
+        console.log("Respuesta del backend:", response.data);
+         // Información del Pet actualizada
+        } catch (error) {
+            if (error.response && error.response.data.includes("The pet is sleeping")) {
+                alert("El Pokémon está durmiendo. No puede realizar otras acciones hasta que se despierte.");
+                setIsSleeping(true); // Asegúrate de que el estado en el frontend refleje la respuesta del backend
+            } else {
+                alert(`No se pudo realizar ${interaction}.`);
+            }
+        }
+    };
+
 
     return (
         <div className="pokemon-details-container">
@@ -62,9 +376,34 @@ const PokemonDetails = () => {
     </a>
         </div>
             <div className="rectangle">
-    <ul className="interactions-list">
-        {["Alimentar", "Dormir", "Jugar", "Entrenar", "Explorar", "Curar","Eliminar Pokémon"].map((option, index) => (
-            <li key={index} className="interaction-item">
+            <ul className="interactions-list">
+            {currentPokemon.species === "Eevee" && (
+            <li
+                className="interaction-item"
+                onClick={() => setIsEvolving(true)}
+            >
+                <span className="interaction-icon">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="16"
+                        height="16"
+                        fill="currentColor"
+                        className="bi bi-play-fill"
+                        viewBox="0 0 16 16"
+                    >
+                        <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393" />
+                    </svg>
+                </span>
+                Evolucionar
+            </li>
+        )}
+        {isEvolving && renderEvolutionModal()}  
+        {Object.keys(interactionMap).map((option, index) => (
+            <li
+                key={index}
+                className="interaction-item"
+                onClick={() => handleInteraction(option)}
+            >
                 <span className="interaction-icon">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -84,43 +423,83 @@ const PokemonDetails = () => {
             </div>
             <img src={logo} alt="Logo" className="logo-image" />
                 <div className="pokemon-details-content">
-                
                 <div className="pokemon-alias-container">
                     <img src={pokeIcon} alt="Poke Icon" className="poke-icon" />
-                    <span className="pokemon-alias">{pokemon.alias}</span>
+                    <span className="pokemon-alias">{currentPokemon.alias}</span>
                     <span className="separator">-</span>
-                    <p className="pokemon-level"><span>Nv. </span> {pokemon.lvl}</p>
+                    <p className="pokemon-level"><span>Nv. </span> {currentPokemon.lvl}</p>
                 </div>
-                    {/* Imagen central basada en la especie */}
-                    {speciesImage && (
+                <div className="pokemon-types-container">
+                        {currentPokemon.types &&
+                            currentPokemon.types.map((type, index) => (
+                                <img
+                                    key={index}
+                                    src={typeImages[type.trim()]} // Asegura que el tipo coincida con las claves
+                                    alt={type}
+                                    className="type-image"
+                                />
+                            ))}
+                    </div>
+                {temporaryImage && (
                         <div
                             className="pokemon-image-container"
                             style={{
-                                backgroundImage: `url(${locationBackground})`, // Fondo dinámico
-                                backgroundSize: 'cover',
-                                backgroundPosition: 'center',
+                                backgroundImage: `url(${temporaryBackground})`, // Fondo dinámico
+                                backgroundSize: "cover",
+                                backgroundPosition: "center",
                             }}
                         >
-                            <img
-                                src={speciesImage}
-                                alt={pokemon.species}
-                                className="pokemon-species-image"
-                            />
+                            <img 
+                             src={temporaryImage}
+                             alt={currentPokemon.species}
+                             className={`pokemon-species-image ${
+                                temporaryImage === sleepingImages[currentPokemon.species]
+                                ? "sleeping-image"
+                                : temporaryImage === trainingImages[currentPokemon.species]
+                                ? "training-image"
+                                : temporaryImage === explorationImages[currentPokemon.species]
+                                ? "exploration-image"
+                                : temporaryImage === require('../assets/poke.png')
+                                ? "heal-image"
+                                : "default-image"
+                            }`}
+                        />
+                         {isEating && (
+                        <div className="eating-gif-container">
+                            <img src={require('../assets/emojis/yummy.png')} alt="Comiendo" className="eating-gif" />
                         </div>
-                    )}
-                    
+                        )}
+                          {isPlaying && (
+                        <div className="playing-gif-container">
+                            <img src={require('../assets/emojis/heart.png')} alt="Jugando" className="playing-gif" />
+                        </div>
+                        )}
+                          {temporaryImage === sleepingImages[currentPokemon.species] && (
+                    <div className="sleeping-gif-container">
+                        <img src={require('../assets/emojis/sleep.gif')} alt="Durmiendo" className="sleeping-gif" />
+                    </div>
+                        )}
+                        {isHealing && (
+                    <div className="healing-gif-container">
+                        <img src={require('../assets/emojis/heart.png')} alt="Curando" className="healing-gif" />
+                    </div>
+                        )}
+                        </div>
+                    )}   
+                                  
+                                       
                     <div className="ph-bar-container">
                         <div className="ph-bar-text">PH</div>
                         <div
                             className="ph-bar"
-                            style={{ width: `${pokemon.ph}%` }} // Ajusta el ancho según el porcentaje de PH
+                            style={{ width: `${currentPokemon.ph}%` }} // Ajusta el ancho según el porcentaje de PH
                         ></div>
                     </div>
                     <div className="ph-bar-container">
                         <div className="exp-bar-text">EX</div>
                         <div
                             className="exp-bar"
-                            style={{ width: `${pokemon.experience}%` }} // Ajusta el ancho según el porcentaje de PH
+                            style={{ width: `${currentPokemon.experience}%` }} // Ajusta el ancho según el porcentaje de PH
                         ></div>
                     </div>
                     <div className="happ-bar-container">
@@ -132,7 +511,7 @@ const PokemonDetails = () => {
                     </div>
                         <div
                             className="happ-bar"
-                            style={{ width: `${pokemon.happiness}%` }} // Ajusta el ancho según el porcentaje de PH
+                            style={{ width: `${currentPokemon.happiness}%` }} // Ajusta el ancho según el porcentaje de PH
                         ></div>
                     </div>
                 </div>
