@@ -4,6 +4,8 @@ import Register from '../pages/Register.jsx';
 import UserDashboard from '../pages/UserDashboard.jsx'; // Componente del menú
 import CreatePokemon from '../pages/CreatePokemon.jsx';
 import PokemonDetails from '../pages/PokemonDetails.jsx';
+import PokemonList from '../pages/PokemonList.jsx';
+import GetOne from '../pages/GetOne.jsx';
 
 function Main() {
   return (
@@ -14,6 +16,8 @@ function Main() {
         <Route path="/user-dashboard" element={<UserDashboard />} />
         <Route path="/pokenest/create" element={<CreatePokemon />} />
         <Route path="/pokenest/pokedetails" element={<PokemonDetails />} />
+        <Route path="/pokenest/getUserPoke" element={<PokemonList/>} />
+        <Route path="/pokenest/getOne/:id" element={<GetOne />} />
       </Routes>
     </Router>
   );

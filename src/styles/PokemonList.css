@@ -1,0 +1,214 @@
+.pokemon-list-container {
+    background: url('../assets/background.jpg') no-repeat center center;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pokemon-title-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* Permite posicionar elementos internamente */
+    gap: 20px; /* Espaciado entre el logo y el título */
+    width: 100%;
+    margin: 0;
+    padding: 40px 0;
+    box-sizing: border-box;
+}
+  
+.navigation-header {
+    display: flex;
+    align-items: center;
+    position: absolute; /* Posiciona el enlace respecto a `pokemon-title-box` */
+    top: 10px; /* Ajusta la posición vertical */
+    right: 20px; /* Ajusta la posición horizontal hacia la derecha */
+    z-index: 3; /* Asegura que esté encima del contenido */
+}
+  
+.navigation-link {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #585858;
+    text-decoration: none;
+    gap: 5px; /* Espacio entre el texto y el icono */
+    transition: color 0.2s ease;
+}
+  
+.navigation-link:hover {
+    color: #66AA22; /* Cambia el color al pasar el ratón */
+}
+  
+.pokemon-list-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #000000;
+    text-align: center;
+    margin: 0;
+    margin-top: 20px;
+}
+
+.separator-line {
+    width: 80%; /* Ajusta la longitud de la línea */
+    height: 2px; /* Grosor de la línea */
+    background-color: #e0e0e0; /* Color gris claro */
+    margin-top: 20px; /* Espaciado encima de la línea */
+    margin-bottom: 0px; /* Espaciado debajo de la línea */
+    border-radius: 1px; /* Opcional: redondea los bordes de la línea */
+  }
+
+.pokemon-list-box {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border: 1px solid black;
+    padding: 25px;
+    width: 70%;
+    height: 80%;
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.pokemon-card {
+  background: #eefcee;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 0px;
+  width: 300px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+  border: 1px solid black;
+}
+
+.pokemon-card:hover {
+  transform: scale(1.05);
+}
+
+/* Contenido de la tarjeta */
+.pokemon-card-content {
+  display: flex;
+  align-items: center;
+ 
+}
+
+.pokemon-image-wrapper {
+    position: relative; /* Permite posicionar el fondo debajo de la imagen */
+    width: 80px; /* Tamaño igual al de la imagen */
+    height: 80px;
+    flex-shrink: 0;
+    margin-bottom: 30px; /* Igual que la imagen principal */
+    margin-top: 0px;
+    margin-right: 0px;
+  }
+  
+  /* Imagen del Pokémon */
+  .pokemon-image {
+    width: 100%;
+    height: 100%;
+    z-index: 2; /* Aparece encima de la imagen de fondo */
+    position: relative;
+  }
+  
+  /* Imagen de fondo con transparencia */
+  .pokemon-image-background {
+    position: absolute;
+    top: 0; /* Alinea el fondo al borde superior del contenedor */
+    left: 0; /* Alinea el fondo al borde izquierdo del contenedor */
+    width: 60%;
+    height: 60%;
+    margin-top: 20px;
+    margin-left: 5px;
+    background: url('../assets/card/pokebackground.png') no-repeat center center;
+    background-size: cover;
+    opacity: 0.5; /* Grado de transparencia */
+    z-index: 1; /* Aparece detrás de la imagen del Pokémon */
+    border-radius: 50%; /* Si deseas bordes redondeados */
+  }
+
+/* Información del Pokémon */
+.pokemon-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1; /* Para que ocupe el espacio disponible */
+}
+
+.pokemon-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between; /* Espacio entre alias y nivel */
+    gap: 60px;
+  }
+
+/* Alias y nivel */
+.pokemon-alias {
+  font-size: 1.0em;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+  margin-top: 0px;
+}
+
+.pokemon-level {
+    font-size: 0.9em;
+    font-weight: normal;
+    color: #666;
+}
+
+/* Barras de progreso */
+.pokemon-stats .stat {
+  margin-bottom: 8px;
+}
+
+.stat span {
+  font-size: 0.9em;
+  color: #666;
+}
+.progress-bar-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 15px; /* Altura ajustada para las tarjetas más pequeñas */
+    background-color: #d8d8d8; /* Fondo gris oscuro */
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 5px; /* Espaciado entre barras */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border: 1px solid black; /* Borde más delgado para adaptarse al tamaño */
+  }
+  
+  /* Texto dentro de las barras */
+  .progress-bar-text {
+    font-size: 0.8rem; /* Texto más pequeño para ajustarse al diseño compacto */
+    color: white;
+    padding: 0 10px;
+    background-color: #4d4d4d; /* Fondo oscuro para el texto */
+    height: 100%; /* Ocupa toda la altura de la barra */
+    display: flex;
+    align-items: center; /* Centra verticalmente el texto */
+    justify-content: center; /* Centra horizontalmente el texto */
+    border-top-left-radius: 15px; /* Asegura bordes redondeados */
+    border-bottom-left-radius: 15px;
+  }
+  
+  /* Barra de progreso */
+  .progress-bar {
+    height: 100%;
+    background-color: #4caf50; /* Verde para el porcentaje */
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    transition: width 0.3s ease;
+  }

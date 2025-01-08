@@ -23,7 +23,7 @@ const UserDashboard = () => {
             <MenuOption
               icon={pokeIcon}
               label="Mis Pokémon"
-              onClick={() => navigate('/pokenest/create')}
+              onClick={() => navigate('/pokenest/getUserPoke')}
             />
             <MenuOption
             icon={huevoIcon}

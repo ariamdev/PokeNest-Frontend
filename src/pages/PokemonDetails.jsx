@@ -141,7 +141,7 @@ const PokemonDetails = () => {
     const [isHealing, setIsHealing] = useState(false);
     const [isEvolving, setIsEvolving] = useState(false);
     const [evolutionTarget, setEvolutionTarget] = useState("");
-    const [errorMessage, setErrorMessage] = useState(""); 
+    const [errorMessage, setErrorMessage] = useState("");     
     
     const renderEvolutionModal = () => (
         <div className="evolution-modal">
@@ -358,7 +358,7 @@ const PokemonDetails = () => {
         <div className="pokemon-details-container">
             <div className="poke-details-box">
             <div className="navigation-header">
-            <a href="/getUserPoke" className="navigation-link">
+            <a href="/pokenest/getUserPoke" className="navigation-link">
         Mis Pokémon
         <svg
             xmlns="http://www.w3.org/2000/svg"
