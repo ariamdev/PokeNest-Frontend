@@ -56,9 +56,7 @@ const CreatePokemon = () => {
 
     return (
         <div className="create-pokemon-container">
-            {/* Fondo */}
             <div className="background-image">
-                {/* Cuadro central */}
                 <div className="main-box">
                     <h1 className="main-title">¡Has adoptado un nuevo Pokemon!</h1>
                     <div className="content">
@@ -77,7 +75,7 @@ const CreatePokemon = () => {
                                     value={alias}
                                     onChange={(e) => {
                                         setAlias(e.target.value);
-                                        setErrorMessage(""); // Limpiar el mensaje de error al escribir
+                                        setErrorMessage(""); 
                                     }}
                                 />
                                 {errorMessage && <p className="error-message">{errorMessage}</p>}

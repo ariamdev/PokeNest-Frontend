@@ -131,7 +131,7 @@ const interactionMap = {
 };
 
 const GetOne = () => {
-    const { id } = useParams(); // Obtén el ID desde la URL
+    const { id } = useParams(); 
     const navigate = useNavigate();
 
     const [pokemonDetails, setPokemonDetails] = useState(null);
@@ -218,7 +218,7 @@ const GetOne = () => {
                 <option value="Sylveon">Sylveon</option>
             </select>
             {errorMessage && (
-                <p className="error-message">{errorMessage}</p> // Renderiza el mensaje de error
+                <p className="error-message">{errorMessage}</p> 
             )}
             <button onClick={handleEvolution}>Confirmar</button>
             <button onClick={() => setIsEvolving(false)}>Cancelar</button>
@@ -259,18 +259,18 @@ const GetOne = () => {
             }
     
             setTimeout(() => {
-                // Actualizar a la nueva especie y fondo
+                
                 setTemporaryBackground(locationBackgrounds[updatedPokemon.location]);
                 setTemporaryImage(speciesImages[updatedPokemon.species]);
-                setPokemonDetails(updatedPokemon); // Actualizar el Pokémon
+                setPokemonDetails(updatedPokemon); 
     
-                // Quitar la clase de fundido
+               
                 if (pokemonImage) {
                     pokemonImage.classList.remove("pokemon-fade-in");
                 }
     
-                setIsEvolving(false); // Cierra el modal
-            }, 2000); // 5 segundos para mostrar la animación
+                setIsEvolving(false); 
+            }, 2000); 
         } catch (error) {
             console.error("Error al evolucionar el Pokémon:", error);
             alert("No se pudo evolucionar al Pokémon. Inténtalo nuevamente.");
@@ -305,10 +305,10 @@ const GetOne = () => {
             const response = await axios.post(url, data);
             const updatedPokemon = response.data;
     
-            // Manejo de cada interacción
+          
             switch (interaction) {
                 case "Alimentar":
-                    setIsEating(true); // Muestra el GIF de "Comer"
+                    setIsEating(true);
     
                     setTimeout(() => {
                         setIsEating(false);
@@ -321,7 +321,7 @@ const GetOne = () => {
                     setTimeout(() => {
                         setIsSleeping(false);
                         setTemporaryImage(speciesImages[pokemonDetails.species]);
-                    }, 10000); // 10 segundos
+                    }, 10000); 
                     break;
 
                 case "Jugar":
@@ -338,7 +338,7 @@ const GetOne = () => {
                     setTimeout(() => {
                         setTemporaryBackground(locationBackgrounds[pokemonDetails.location]);
                         setTemporaryImage(speciesImages[pokemonDetails.species]);
-                    }, 6000); // 6 segundos
+                    }, 6000); 
                     break;
     
                 case "Explorar":
@@ -347,7 +347,7 @@ const GetOne = () => {
                     setTimeout(() => {
                         setTemporaryBackground(locationBackgrounds[pokemonDetails.location]);
                         setTemporaryImage(speciesImages[pokemonDetails.species]);
-                    }, 6000); // 6 segundos
+                    }, 6000); 
                     break;
     
                 case "Curar":
@@ -358,14 +358,14 @@ const GetOne = () => {
                         setIsHealing(false);
                         setTemporaryBackground(locationBackgrounds[pokemonDetails.location]);
                         setTemporaryImage(speciesImages[pokemonDetails.species]);
-                    }, 6000); // 6 segundos
+                    }, 6000); 
                     break;
     
                 default:
                     alert("Interacción no soportada.");
             }
     
-            setPokemonDetails(updatedPokemon); // Actualiza los detalles del Pokémon
+            setPokemonDetails(updatedPokemon); 
         } catch (error) {
             console.error(`Error en la interacción ${interaction}:`, error);
             alert(`No se pudo realizar la interacción: ${interaction}`);
@@ -509,14 +509,14 @@ const GetOne = () => {
                         <div className="ph-bar-text">PH</div>
                         <div
                             className="ph-bar"
-                            style={{ width: `${pokemonDetails.ph}%` }} // Ajusta el ancho según el porcentaje de PH
+                            style={{ width: `${pokemonDetails.ph}%` }} 
                         ></div>
                     </div>
                     <div className="ph-bar-container">
                         <div className="exp-bar-text">EX</div>
                         <div
                             className="exp-bar"
-                            style={{ width: `${pokemonDetails.experience}%` }} // Ajusta el ancho según el porcentaje de PH
+                            style={{ width: `${pokemonDetails.experience}%` }} 
                         ></div>
                     </div>
                     <div className="happ-bar-container">
@@ -528,7 +528,7 @@ const GetOne = () => {
                     </div>
                     <div
                             className="happ-bar"
-                            style={{ width: `${pokemonDetails.happiness}%` }} // Ajusta el ancho según el porcentaje de PH
+                            style={{ width: `${pokemonDetails.happiness}%` }} 
                         >
 
                     </div>

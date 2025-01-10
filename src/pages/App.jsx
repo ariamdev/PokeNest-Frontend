@@ -8,7 +8,7 @@ import cloud3 from '../assets/Cloud-3.png';
 
 
 const api = axios.create({
-  baseURL: '/auth', // Ajusta la URL base según tu backend
+  baseURL: '/auth', 
 });
 
 function App() {
@@ -24,10 +24,10 @@ function App() {
         password,
       });
 
-      // Guardar el token en localStorage
+      
       localStorage.setItem('token', response.data.token);
 
-      // Redirigir según el rol
+      
       const role = response.data.role;
       if (role === 'ADMIN') {
         window.location.href = '/admin/getAll';

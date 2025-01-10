@@ -161,7 +161,7 @@ const PokemonDetails = () => {
                 <option value="Sylveon">Sylveon</option>
             </select>
             {errorMessage && (
-                <p className="error-message">{errorMessage}</p> // Renderiza el mensaje de error
+                <p className="error-message">{errorMessage}</p> 
             )}
             <button onClick={handleEvolution}>Confirmar</button>
             <button onClick={() => setIsEvolving(false)}>Cancelar</button>
@@ -182,16 +182,10 @@ const PokemonDetails = () => {
         if (!confirmEvolution) return;
     
         try {
-            // Construir URL con el parámetro `targetSpecies`
+          
             const url = `/pokenest/update/eev?targetSpecies=${evolutionTarget}`;
-    
-            // Datos a enviar en el cuerpo
             const data = { id: currentPokemon.id };
-    
-            // Realizar la solicitud POST
             const response = await axios.post(url, data);
-    
-            // Actualizar el estado con los nuevos datos del Pokémon
             const updatedPokemon = response.data;
 
             setTemporaryBackground(locationBackgrounds.EVOLUTION);
@@ -203,18 +197,16 @@ const PokemonDetails = () => {
             }
     
             setTimeout(() => {
-                // Actualizar a la nueva especie y fondo
                 setTemporaryBackground(locationBackgrounds[updatedPokemon.location]);
                 setTemporaryImage(speciesImages[updatedPokemon.species]);
-                setCurrentPokemon(updatedPokemon); // Actualizar el Pokémon
+                setCurrentPokemon(updatedPokemon); 
     
-                // Quitar la clase de fundido
                 if (pokemonImage) {
                     pokemonImage.classList.remove("pokemon-fade-in");
                 }
     
-                setIsEvolving(false); // Cierra el modal
-            }, 2000); // 5 segundos para mostrar la animación
+                setIsEvolving(false); 
+            }, 2000); 
         } catch (error) {
             console.error("Error al evolucionar el Pokémon:", error);
             alert("No se pudo evolucionar al Pokémon. Inténtalo nuevamente.");
@@ -231,9 +223,9 @@ const PokemonDetails = () => {
         try {
             const { action, endpoint } = interactionMap[interaction];
 
-            // Construir URL con el parámetro `petInteraction`
+            
             const url = action ? `${endpoint}?petInteraction=${action}` : endpoint;
-            const data = { id: currentPokemon.id }; // ID en el cuerpo de la solicitud
+            const data = { id: currentPokemon.id }; 
 
             if (interaction === "Eliminar Pokémon") {
                 const confirmDelete = window.confirm("¿Estás seguro de que deseas eliminar este Pokémon?");
@@ -266,23 +258,23 @@ const PokemonDetails = () => {
             setTimeout(() => {
                 setTemporaryBackground(locationBackgrounds[updatedPokemon.location]);
                 setTemporaryImage(speciesImages[updatedPokemon.species]);
-                setCurrentPokemon(updatedPokemon); // Actualizar el Pokémon
+                setCurrentPokemon(updatedPokemon); 
     
-                // Quitar la clase de fundido
+               
                 if (pokemonImage) {
                     pokemonImage.classList.remove("pokemon-fade-in");
                 }
     
-                setIsEvolving(false); // Cierra el modal
+                setIsEvolving(false); 
             }, 2000);
             }
 
             if (interaction === "Alimentar") {
-                setIsEating(true); // Muestra el GIF de "Comer"
+                setIsEating(true); 
 
                 setTimeout(() => {
                     setIsEating(false);
-                }, 10000); // 10 segundos
+                }, 10000); 
             }
 
             if (interaction === "Dormir") {
@@ -300,53 +292,53 @@ const PokemonDetails = () => {
 
                 setTimeout(() => {
                     setIsPlaying(false);
-                }, 10000); // 10 segundos
+                }, 10000); 
             }
 
             if (interaction === "Entrenar") {
-                setTemporaryBackground(locationBackgrounds.BATTLEGROUND); // Cambia la ubicación al campo de batalla
-                setTemporaryImage(trainingImages[currentPokemon.species]); // Cambia la imagen al entrenamiento
+                setTemporaryBackground(locationBackgrounds.BATTLEGROUND);
+                setTemporaryImage(trainingImages[currentPokemon.species]); 
             
-                // Restaurar después de 20 segundos
+              
                 setTimeout(() => {
-                    setTemporaryBackground(locationBackgrounds[currentPokemon.location]); // Restaura la ubicación
-                    setTemporaryImage(speciesImages[currentPokemon.species]); // Restaura la imagen
-                }, 6000); // 20 segundos
+                    setTemporaryBackground(locationBackgrounds[currentPokemon.location]); 
+                    setTemporaryImage(speciesImages[currentPokemon.species]);
+                }, 6000); 
             }
 
             if (interaction === "Explorar") {
                 setTemporaryBackground(locationBackgrounds.EXPLORE);          
                 setTemporaryImage(explorationImages[currentPokemon.species]);
             
-                // Restaurar después de 30 segundos
+             
                 setTimeout(() => {
                     setTemporaryBackground(locationBackgrounds[currentPokemon.location]);
                     setTemporaryImage(speciesImages[currentPokemon.species]);
-                }, 6000); // 30 segundos
+                }, 6000); 
             }
 
             if (interaction === "Curar") {
-                // Cambiar localización e imagen temporalmente
+               
                 setTemporaryBackground(locationBackgrounds.POKECENTER);
                 setTemporaryImage(require('../assets/poke.png'));
-                setIsHealing(true); // Activa el GIF de curación
+                setIsHealing(true); 
             
                 setTimeout(() => {
-                    setTemporaryBackground(locationBackgrounds[currentPokemon.location]); // Restaura la ubicación original
-                    setTemporaryImage(speciesImages[currentPokemon.species]); // Restaura la imagen original
-                    setIsHealing(false); // Oculta el GIF después de 10 segundos
-                }, 6000); // 10 segundos
+                    setTemporaryBackground(locationBackgrounds[currentPokemon.location]); 
+                    setTemporaryImage(speciesImages[currentPokemon.species]); 
+                    setIsHealing(false); 
+                }, 6000); 
             }
 
           
 
         setCurrentPokemon(updatedPokemon);
         console.log("Respuesta del backend:", response.data);
-         // Información del Pet actualizada
+        
         } catch (error) {
             if (error.response && error.response.data.includes("The pet is sleeping")) {
                 alert("El Pokémon está durmiendo. No puede realizar otras acciones hasta que se despierte.");
-                setIsSleeping(true); // Asegúrate de que el estado en el frontend refleje la respuesta del backend
+                setIsSleeping(true);
             } else {
                 alert(`No se pudo realizar ${interaction}.`);
             }

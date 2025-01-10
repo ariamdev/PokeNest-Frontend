@@ -9,8 +9,8 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    overflow: hidden; /* Asegura que las nubes que se mueven fuera no se vean */
-    position: relative; /* Necesario para las nubes animadas */
+    overflow: hidden; 
+    position: relative; 
     z-index: 0; 
 }
 
@@ -36,7 +36,7 @@
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 20px;
-    text-align: center; /* Centra el título */
+    text-align: center; 
 }
 
 .content {
@@ -46,10 +46,9 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    gap: 20px; /* Asegura espacio entre los elementos */
+    gap: 20px; 
 }
 
-/* Imagen a la izquierda */
 .image-container {
     flex: 1;
     display: flex;
@@ -58,13 +57,13 @@
 }
 
 .nest-image {
-    width: 90%; /* Mantén el ancho original */
-    height: 90%; /* Mantén la altura original */
+    width: 90%; 
+    height: 90%;
     max-width: 100%;
     padding-left: 5%;
 }
 
-/* Rectángulo alargado */
+
 .side-rectangle {
     background-color: rgb(255, 255, 255);
     width: 45%;
@@ -78,20 +77,19 @@
     padding: 20px;
 }
 
-/* Formulario de alias */
 .alias-form {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centra todos los elementos del formulario */
+    align-items: center; 
     justify-content: center;
-    width: 90%; /* Ocupa todo el ancho disponible */
+    width: 90%; 
 }
 
 .error-message {
     color: red;
     font-size: 0.9rem;
     margin-top: 5px;
-    text-align: left; /* Alineado con los márgenes */
+    text-align: left; 
     width: 90%;
 }
 
@@ -100,13 +98,13 @@
     margin-bottom: 5px;
     font-weight: bold;
     color: #000000;
-    text-align: left; /* Alinea las etiquetas a la izquierda */
+    text-align: left; 
     width: 90%;
     
 }
 
 .alias-input {
-    width: 90%; /* Asegura que los campos de texto ocupen todo el ancho disponible */
+    width: 90%; 
     padding: 10px;
     margin-bottom: 2px;
     border: 1px solid #ddd;
@@ -119,8 +117,8 @@
     display: block;
     margin-bottom: 10px;
     font-size: 0.8rem;
-    color: #5c5c5c; /* Rojo para resaltar atención */
-    text-align: left; /* Alineado con los márgenes */
+    color: #5c5c5c; 
+    text-align: left; 
     width: 90%;
 }
 
@@ -128,7 +126,7 @@
     margin-top: 10px;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centra todos los elementos del formulario */
+    align-items: center; 
     justify-content: center;
     width: 90%; 
 }
@@ -138,12 +136,12 @@
     margin-bottom: 5px;
     font-weight: bold;
     color: #000000;
-    text-align: left; /* Alinea las etiquetas a la izquierda */
-    width: 90%; /* Alinea el texto con los márgenes */
+    text-align: left; 
+    width: 90%; 
 }
 
 .species-select {
-    width: 90%; /* Asegura que los campos de texto ocupen todo el ancho disponible */
+    width: 90%; 
     padding: 10px;
     margin-bottom: 2px;
     border: 1px solid #ddd;
@@ -154,7 +152,7 @@
 
 
 .create-button {
-    width: 90%; /* Asegura que el botón ocupe todo el ancho del contenedor */
+    width: 90%; 
     padding: 10px;
     background: linear-gradient(135deg, #395e15, #66AA22);
     color: #fff;

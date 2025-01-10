@@ -28,14 +28,13 @@ function Register() {
       setSuccessMessage('¡Registro realizado! Redirigiendo al inicio de sesión...');
       setErrorMessage('');
 
-      // Optionally reset form fields
       setUsername('');
       setEmail('');
       setPassword('');
 
-      // Redirige a la página principal después de 2 segundos
+      
       setTimeout(() => {
-        navigate('/'); // Redirige a "/"
+        navigate('/'); 
       }, 2000);
     } catch (error) {
       console.error(error);
@@ -53,12 +52,12 @@ function Register() {
         <img src={cloud2} alt="Cloud 4" className="cloud cloud4" />
       </div>
 
-      {/* Contenedor del mensaje de éxito */}
+     
       {successMessage && (
       <div className="success-container">
       <p className="success-title">{successMessage}</p> 
           <img
-            src={loadingGif} // Archivo local
+            src={loadingGif} 
             alt="Loading GIF"
             className="loading-gif"
           />

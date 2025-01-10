@@ -8,27 +8,27 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    overflow: hidden; /* Asegura que los nubes que se mueven fuera no se vean */
-    position: relative; /* Necesario para las nubes animadas */
+    overflow: hidden; 
+    position: relative; 
     z-index: 0; 
 }
 
 .pokemon-types-container {
-    display: flex; /* Asegura que los tipos estén en línea */
-    gap:2px; /* Espaciado entre las imágenes */
+    display: flex; 
+    gap:2px; 
     margin-top: 0px;
     margin-bottom: 0px;
 }
 
 .type-image {
-    width: 35px; /* Ajusta el tamaño según tu diseño */
+    width: 35px; 
     height: auto;
-    display: block; /* Asegura que la imagen sea visible */
+    display: block; 
 }
 
 .pokemon-fade-in {
     opacity: 0;
-    animation: fadeIn 2s forwards; /* Duración del efecto de fundido */
+    animation: fadeIn 2s forwards; 
 }
 
 @keyframes fadeIn {
@@ -46,16 +46,16 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background: white;
-    padding: 20px; /* Ajusta el espacio interno */
+    padding: 20px; 
     border-radius: 5px;
     border: 1px solid #555;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     z-index: 100;
     text-align: center;
-    width: calc(100% - 10px); /* Ocupa todo el ancho disponible menos 10px */
-    max-width: 400px; /* Tamaño máximo opcional */
+    width: calc(100% - 10px); 
+    max-width: 400px; 
     min-height: 350px; 
-    box-sizing: border-box; /* Asegura que el padding no afecte el ancho total */
+    box-sizing: border-box; 
 }
 
 .evolution-modal h3 {
@@ -102,31 +102,31 @@
     height: 150px;
     object-fit: contain;
     margin-top: -20px; 
-    margin-bottom: 60px;/* Ajusta la posición vertical */
+    margin-bottom: 60px;
 }
 
-/* Imágenes de exploración */
+
 .pokemon-species-image.exploration-image {
     width: 25px;
     height: auto;
     object-fit: contain;
     margin-top: -10px;
-    margin-bottom: 50px; /* Ajusta la posición vertical */
+    margin-bottom: 50px; 
 }
 
-/* Imágenes de dormir */
+
 .pokemon-species-image.sleeping-image {
     width: 120px;
     height: auto;
     object-fit: contain;
-    margin-top: 0; /* Sin desplazamiento vertical */
+    margin-top: 0; 
 }
 
 .pokemon-species-image.heal-image {
-    width: 0px; /* Ajusta el ancho */
-    height: auto; /* Mantiene la proporción */
+    width: 0px; 
+    height: auto; 
     object-fit: contain;
-    margin-top: 10px; /* Ajusta la posición vertical */
+    margin-top: 10px; 
     margin-left: 20px; 
 }
 
@@ -138,88 +138,88 @@
 }
 
 .healing-gif {
-    width: 20px; /* Tamaño del GIF */
-    height: auto; /* Mantiene la proporción */
+    width: 20px; 
+    height: auto;
     padding-top: 10px;
     padding-bottom: 70px;
     padding-right: 50px;
     padding-left: 50px;
-    animation: floatAndFade 5s ease-in-out forwards; /* Animación de flotación y desaparición */
+    animation: floatAndFade 5s ease-in-out forwards; 
 }
 
 .eating-gif-container {
     position: absolute;
-    top: 30px; /* Ajusta la posición vertical */
-    left: 50%; /* Centra horizontalmente */
+    top: 30px; 
+    left: 50%; 
     transform: translateX(-50%);
-    z-index: 10; /* Asegura que la imagen esté encima de la imagen del Pokémon */
-    pointer-events: none; /* Ignora eventos del ratón */
+    z-index: 10;
+    pointer-events: none; 
 }
 
 .eating-gif {
-    width: 50px; /* Tamaño del GIF */
-    height: auto; /* Mantiene la proporción */
+    width: 50px; 
+    height: auto; 
     padding-top: 50px;
     padding-left: 20px;
-    animation: floatAndFade 5s ease-in-out forwards; /* Animación de flotación y desaparición */
+    animation: floatAndFade 5s ease-in-out forwards; 
 }
 
 .playing-gif-container {
     position: absolute;
-    top: 30px; /* Ajusta la posición vertical */
-    left: 50%; /* Centra horizontalmente */
+    top: 30px; 
+    left: 50%; 
     transform: translateX(-50%);
-    z-index: 10; /* Asegura que la imagen esté encima de la imagen del Pokémon */
-    pointer-events: none; /* Ignora eventos del ratón */
+    z-index: 10; 
+    pointer-events: none; 
 }
 
 .playing-gif {
-    width: 20px; /* Tamaño del GIF */
-    height: auto; /* Mantiene la proporción */
+    width: 20px; 
+    height: auto; 
     padding-top: 50px;
-    animation: floatAndFade 5s ease-in-out forwards; /* Animación de flotación y desaparición */
+    animation: floatAndFade 5s ease-in-out forwards; 
 }
 
-/* Animación de flotación y desaparición */
+
 @keyframes floatAndFade {
     0% {
-        opacity: 0; /* Comienza invisible */
-        transform: translateY(20px); /* Empieza más abajo */
+        opacity: 0; 
+        transform: translateY(20px); 
     }
     10% {
-        opacity: 1; /* Aparece completamente */
-        transform: translateY(0); /* Flota hacia arriba */
+        opacity: 1; 
+        transform: translateY(0);
     }
     90% {
-        opacity: 1; /* Permanece visible */
-        transform: translateY(-10px); /* Sigue flotando ligeramente */
+        opacity: 1; 
+        transform: translateY(-10px); 
     }
     100% {
-        opacity: 0; /* Desaparece */
-        transform: translateY(-20px); /* Se mueve hacia arriba antes de desaparecer */
+        opacity: 0; 
+        transform: translateY(-20px);
     }
 }
 
 .sleeping-gif-container {
     position: absolute;
-    top: 30px; /* Ajusta la posición vertical */
-    left: 50%; /* Centra horizontalmente */
+    top: 30px; 
+    left: 50%; 
     transform: translateX(-50%);
-    z-index: 10; /* Asegura que la imagen esté encima de la imagen del Pokémon */
-    pointer-events: none; /* Ignora eventos del ratón */
+    z-index: 10; 
+    pointer-events: none; 
 }
 
 .sleeping-gif {
-    width: 40px; /* Tamaño del GIF */
-    height: auto; /* Mantiene la proporción */
+    width: 40px; 
+    height: auto; 
     padding-top: 20px;
     padding-left: 20px;
 }
 
 
 .logo-image {
-    width: 200px; /* Tamaño del logotipo ajustado */
-    margin-bottom: 20px; /* Espacio entre el logotipo y el formulario */
+    width: 200px; 
+    margin-bottom: 20px; 
     align-self: center;
   }
 
@@ -227,9 +227,9 @@
     display: flex;
     align-items: center;
     position: absolute;
-    top: 10px; /* Ajusta la posición vertical */
-    right: 20px; /* Ajusta la posición horizontal hacia la derecha */
-    z-index: 3;/* Asegura que esté encima del contenido */
+    top: 10px; 
+    right: 20px; 
+    z-index: 3;
 }
 
 .navigation-link {
@@ -239,27 +239,27 @@
     font-weight: bold;
     color: #585858;
     text-decoration: none;
-    gap: 5px; /* Espacio entre el texto y el icono */
+    gap: 5px; 
     transition: color 0.2s ease;
 }
 
 .navigation-link:hover {
-    color: #66AA22; /* Cambia el color al pasar el ratón */
+    color: #66AA22; 
 }
 
 .rectangle {
-    position: absolute; /* Posicionamiento relativo al contenedor padre */
-    top: 50%; /* Centrado verticalmente */
-    right: 50px; /* Espaciado desde el borde derecho */
-    transform: translateY(-50%); /* Ajusta el centrado vertical */
+    position: absolute; 
+    top: 50%; 
+    right: 50px; 
+    transform: translateY(-50%); 
     background-color: rgb(255, 255, 255);
     width: 30%;
-    height: 60%; /* Altura ajustada */
-    border-radius: 5px; /* Bordes redondeados */
+    height: 60%; 
+    border-radius: 5px; 
     border: 1px solid #555;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 20px; /* Ajusta el espacio interno */
-    z-index: 2; /* Asegura que esté encima del contenido principal */
+    padding: 20px; 
+    z-index: 2; 
     margin-top: 50px;
 }
 
@@ -316,7 +316,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    gap: 5px; /* Reduce el espacio entre los elementos */
+    gap: 5px; 
 }
 
 .pokemon-details-item span {
@@ -328,7 +328,7 @@
 .pokemon-alias-container {
     display: flex;
     align-items: center;
-    gap: 0px; /* Espacio entre el icono y el alias */
+    gap: 0px; 
 }
 
 .poke-icon {
@@ -358,20 +358,20 @@
     justify-content: center;
     align-items: center;
     margin: 20px 0;
-    width: 100%; /* Ajusta el ancho relativo al contenedor principal */
-    max-width: 350px; /* Tamaño máximo para limitar el ancho */
-    height: 250px; /* Cambia la altura del contenedor */
+    width: 100%; 
+    max-width: 350px; 
+    height: 250px; 
     border-radius: 10px;
     position: relative;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     border: 2px solid black;
-    overflow: hidden; /* Asegura que el contenido no desborde */
+    overflow: hidden; 
     margin-top: 10px;
 }
 
 .pokemon-level {
     color: #333;
-    margin-bottom: 0px; /* Espacio entre el nivel y la barra PH */
+    margin-bottom: 0px;
     padding-left: 5px;
     margin-top: 0px;
 }
@@ -382,7 +382,7 @@
     width: 100%;
     max-width: 350px;
     height: 20px;
-    background-color: #d8d8d8;/* Fondo gris oscuro */
+    background-color: #d8d8d8;
     border-radius: 15px;
     overflow: hidden;
     margin-top: 2px;
@@ -402,7 +402,7 @@
 
 .ph-bar {
     height: 100%;
-    background-color: #4caf50; /* Verde para el porcentaje */
+    background-color: #4caf50; 
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     transition: width 0.3s ease;
@@ -433,7 +433,7 @@
     width: 100%;
     max-width: 350px;
     height: 20px;
-    background-color: #d8d8d8;/* Fondo gris oscuro */
+    background-color: #d8d8d8;
     border-radius: 15px;
     overflow: hidden;
     margin-top: 2px;
@@ -453,7 +453,7 @@
 
 .happ-bar {
     height: 100%;
-    background-color: #e27696; /* Verde para el porcentaje */
+    background-color: #e27696; 
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     transition: width 0.3s ease;
@@ -461,8 +461,8 @@
 
 .error-message {
     color: red;
-    font-size: 0.9rem; /* Tamaño un poco más pequeño */
-    margin-top: 5px; /* Espaciado respecto al selector */
-    text-align: left; /* Alineación opcional */
+    font-size: 0.9rem; 
+    margin-top: 5px; 
+    text-align: left; 
 }
 

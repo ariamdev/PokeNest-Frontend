@@ -21,7 +21,7 @@ const MenuOption = ({ icon, customIcon, label, onClick }) => {
         <div className="menu-icon">{customIcon}</div>
       ) : icon ? (
         <img src={icon} alt={label} className="menu-icon" />
-      ) : null /* Si no hay icon ni customIcon, no renderiza nada */}
+      ) : null}
       <span className="menu-label">{label}</span>
     </div>
   );

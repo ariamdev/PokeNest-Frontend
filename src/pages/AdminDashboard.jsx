@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import '../styles/AdminDashboard.css'; // Asegúrate de crear un archivo CSS
+import '../styles/AdminDashboard.css';
 import logo from '../assets/logo.png';
 
 
@@ -147,11 +147,11 @@ const AdminDashboard = () => {
                         &times;
                       </button>
                     )}
-                    <div className="pokemonimagewrapper">
+                    <div className="pokemonimagewrapper2">
                       <img
                         src={speciesCardImage[pokemon.species]}
                         alt={pokemon.species}
-                        className="pokemonimage"
+                        className="pokemonimage2"
                       />
                       <div className="pokemonimagebackground"></div>
                     </div>
