@@ -1,4 +1,4 @@
-.admin-dashboard {
+.admindashboard {
     background: url('../assets/background.jpg') no-repeat center center;
     background-size: cover;
     width: 100vw;
@@ -8,7 +8,7 @@
     align-items: center;
   }
   
-  .dashboard-container {
+  .dashboardcontainer {
     background: #fff;
     border-radius: 20px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
@@ -24,13 +24,13 @@
     justify-content: flex-start;
   }
   
-  .logo-container {
+  .logocontainer {
     margin-bottom: 20px;
     text-align: center;
     width: 100%;
   }
   
-  .dashboard-logo {
+  .dashboardlogo {
     max-height: 80px;
     object-fit: contain;
     margin: 0 auto;
@@ -43,30 +43,35 @@
     margin-bottom: 20px;
   }
   
-  .logout-link {
-    font-size: 16px;
+  .logoutlink {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #585858;
     text-decoration: none;
-    color: #007BFF;
-    cursor: pointer;
+    gap: 5px;
+    transition: color 0.2s ease;
   }
   
-  .logout-link:hover {
+  .logoutlink:hover {
     text-decoration: underline;
+    color: #4caf50;
   }
   
-  .user-section {
+  .usersection {
     margin-bottom: 30px;
     width: 100%;
   }
   
-  .user-title {
+  .usertitle {
     font-size: 20px;
     color: #333;
     margin-bottom: 5px;
     text-align: left;
   }
 
-  .user-title-container {
+  .usertitlecontainer {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -75,21 +80,25 @@
     padding-bottom: 10px; /* Espaciado debajo de la línea */
     margin-bottom: 15px; /* Espaciado entre el título y las tarjetas */
   }
-
-.manage-pokemon {
+  
+  .managepokemonbutton {
+    background-color: #007bff;
+    color: white;
+    width: 20%;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
     font-size: 14px;
-    color: #66AA22;
     cursor: pointer;
-    text-decoration: underline;
-    margin-bottom: 0px;
+    transition: background-color 0.3s ease;
+    margin-bottom: -25px;
   }
   
-  .manage-pokemon:hover {
-    color: #4a7a19;
+  .managepokemonbutton:hover {
+    background-color: #0056b3;
   }
-  
   /* Botón de eliminación */
-  .delete-button {
+  .deletebutton {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -109,18 +118,18 @@
     transition: background-color 0.2s ease;
   }
   
-  .delete-button:hover {
+  .deletebutton:hover {
     background-color: #ff1a1a;
   }
   
-  .pokemon-cards {
+  .pokemoncards {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
     justify-content: left;
   }
   
-  .pokemon-card-content {
+  .pokemoncardcontent {
     position: relative; /* Necesario para ubicar el botón de eliminación */
     display: flex;
     align-items: center;
@@ -135,11 +144,11 @@
     cursor: pointer;
   }
   
-  .pokemon-card-content:hover {
+  .pokemoncardcontent:hover {
     transform: scale(1.05);
   }
   
-  .pokemon-image-wrapper {
+  .pokemonimage-wrapper {
     position: relative;
     width: 80px;
     height: 80px;
@@ -147,14 +156,14 @@
     margin-right: 15px;
   }
   
-  .pokemon-image {
+  .pokemonimage {
     width: 100%;
     height: 100%;
     z-index: 2;
     position: relative;
   }
   
-  .pokemon-image-background {
+  .pokemonimagebackground {
     position: absolute;
     top: 0;
     left: 0;
@@ -169,37 +178,37 @@
     border-radius: 50%;
   }
   
-  .pokemon-info {
+  .pokemoninfo {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     flex-grow: 1;
   }
   
-  .pokemon-header {
+  .pokemonheader {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
   }
   
-  .pokemon-alias {
+  .pokemonalias {
     font-size: 1.0em;
     font-weight: bold;
     color: #333;
     margin-bottom: 5px;
   }
   
-  .pokemon-level {
+  .pokemonlevel {
     font-size: 0.9em;
     font-weight: normal;
     color: #666;
   }
   
-  .pokemon-stats .stat {
+  .pokemonstats .stat {
     margin-bottom: 8px;
   }
   
-  .progress-bar-container {
+  .progressbarcontainer {
     display: flex;
     align-items: center;
     width: 100%;
@@ -212,7 +221,7 @@
     border: 1px solid black;
   }
   
-  .progress-bar-text {
+  .progressbartext {
     font-size: 0.8rem;
     color: white;
     padding: 0 10px;
@@ -225,7 +234,7 @@
     border-bottom-left-radius: 15px;
   }
   
-  .progress-bar {
+  .progressbar {
     height: 100%;
     background-color: #4caf50;
     border-top-right-radius: 15px;

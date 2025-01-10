@@ -1,4 +1,4 @@
-.dashboard-container {
+.dashboardContainer {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -59,7 +59,7 @@
     }
   }
   
-.menu-container {
+.menuscontainer {
     display: flex;
     flex-direction: column;
     align-items: center; /* Centra los elementos horizontalmente */
@@ -74,14 +74,14 @@
     text-align: center;
   }
   
-.menu-title {
+.menustitle {
     font-size: 1.8rem;
     margin-bottom: 20px;
     color: #000000;
     text-align: center; /* Centra el texto */
   }
   
-.menu-options {
+.menusoptions {
     display: flex;
     flex-direction: column;
     align-items: center; /* Centra los elementos horizontalmente */

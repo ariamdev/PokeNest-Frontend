@@ -183,9 +183,17 @@ const GetOne = () => {
     if (error) {
         return <div>{error}</div>;
     }
-
     if (!pokemonDetails) {
-        return <div>Cargando detalles del Pokémon...</div>;
+        return (
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh' }}>
+                <div>Cargando detalles del Pokémon...</div>
+                <img 
+                    src="../assets/waitingpoke.gif" 
+                    alt="Cargando Pokémon" 
+                    style={{ marginTop: '20px', width: '150px', height: '150px' }}
+                />
+            </div>
+        );
     }
 
     const pokemonImage = speciesImages[pokemonDetails.species];

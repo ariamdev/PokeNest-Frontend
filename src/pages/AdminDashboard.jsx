@@ -96,73 +96,87 @@ const AdminDashboard = () => {
   }, []);
 
   return (
-    <div className="admin-dashboard">
-      <div className="dashboard-container">
-        <div className="logo-container">
-          <img src={logo} alt="Logo" className="dashboard-logo" />
-        </div>
+    <div className="admindashboard">
+      <div className="dashboardcontainer">
+        
         <div className="header">
-          <a href="/" onClick={handleLogout} className="logout-link">
+          <a href="/" onClick={handleLogout} className="logoutlink">
             Salir
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                className="bi bi-arrow-right"
+                viewBox="0 0 16 16"
+            >
+                <path
+                fillRule="evenodd"
+                d="M1 8a.5.5 0 0 1 .5-.5h10.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L12.293 8.5H1.5A.5.5 0 0 1 1 8z"
+                />
+            </svg>
           </a>
         </div>
+        <div className="logocontainer">
+          <img src={logo} alt="Logo" className="dashboardlogo" />
+        </div>
         {errorMessage ? (
-          <p className="error-message">{errorMessage}</p>
+          <p className="errormessage">{errorMessage}</p>
         ) : (
           groupedData.map((user, index) => (
-            <div key={index} className="user-section">
-              <div className="user-title-container">
-                <h2 className="user-title">
-                  ID: {user.userId} - Username: {user.username}
+            <div key={index} className="usersection">
+              <div className="usertitlecontainer">
+                <h2 className="usertitle">
+                  ID: {user.userId} - {user.username}
                 </h2>
-                <span
-                  className="manage-pokemon"
+                <button
+                  className="managepokemonbutton"
                   onClick={() => setManageMode((prev) => !prev)}
                 >
                   Gestionar Pokémon
-                </span>
+                </button>
               </div>
-              <div className="pokemon-cards">
+              <div className="pokemoncards">
                 {user.pets.map((pokemon) => (
-                  <div key={pokemon.id} className="pokemon-card-content">
+                  <div key={pokemon.id} className="pokemoncardcontent">
                     {manageMode && (
                       <button
-                        className="delete-button"
+                        className="deletebutton"
                         onClick={() => handleDelete(pokemon.id)}
                       >
                         &times;
                       </button>
                     )}
-                    <div className="pokemon-image-wrapper">
+                    <div className="pokemonimagewrapper">
                       <img
                         src={speciesCardImage[pokemon.species]}
                         alt={pokemon.species}
-                        className="pokemon-image"
+                        className="pokemonimage"
                       />
-                      <div className="pokemon-image-background"></div>
+                      <div className="pokemonimagebackground"></div>
                     </div>
-                    <div className="pokemon-info">
-                      <div className="pokemon-header">
-                        <h3 className="pokemon-alias">{pokemon.alias || pokemon.species}</h3>
-                        <span className="pokemon-level">Nv. {pokemon.lvl}</span>
+                    <div className="pokemoninfo">
+                      <div className="pokemonheader">
+                        <h3 className="pokemonalias">{pokemon.alias || pokemon.species}</h3>
+                        <span className="pokemonlevel">Nv. {pokemon.lvl}</span>
                       </div>
-                      <div className="pokemon-stats">
-                        <div className="progress-bar-container">
-                          <div className="progress-bar-text">HP</div>
+                      <div className="pokemonstats">
+                        <div className="progressbarcontainer">
+                          <div className="progressbartext">HP</div>
                           <div
-                            className="progress-bar"
+                            className="progressbar"
                             style={{ width: `${pokemon.ph}%` }}
                           ></div>
                         </div>
-                        <div className="progress-bar-container">
-                          <div className="progress-bar-text">EX</div>
+                        <div className="progressbarcontainer">
+                          <div className="progressbartext">EX</div>
                           <div
-                            className="progress-bar"
+                            className="progressbar"
                             style={{ width: `${pokemon.experience}%` }}
                           ></div>
                         </div>
-                        <div className="progress-bar-container">
-                          <div className="progress-bar-text">
+                        <div className="progressbarcontainer">
+                          <div className="progressbartext">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               width="13"
@@ -176,7 +190,7 @@ const AdminDashboard = () => {
                             </svg>
                           </div>
                           <div
-                            className="progress-bar"
+                            className="progressbar"
                             style={{ width: `${pokemon.happiness}%` }}
                           ></div>
                         </div>

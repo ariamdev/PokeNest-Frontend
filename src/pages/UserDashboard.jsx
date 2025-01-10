@@ -11,15 +11,15 @@ import { useNavigate } from 'react-router-dom';
 const UserDashboard = () => {
   const navigate = useNavigate();
     return (
-      <div className="dashboard-container">
+      <div className="dashboardContainer">
          <div className="background-clouds">
         <img src={cloud1} alt="Cloud 1" className="cloud cloud1" />
         <img src={cloud2} alt="Cloud 2" className="cloud cloud2" />
         <img src={cloud3} alt="Cloud 3" className="cloud cloud3" />
       </div>
-        <div className="menu-container">
-          <h2 className="menu-title">Menú</h2>
-          <div className="menu-options">
+        <div className="menuscontainer">
+          <h2 className="menustitle">Menú</h2>
+          <div className="menusoptions">
             <MenuOption
               icon={pokeIcon}
               label="Mis Pokémon"
