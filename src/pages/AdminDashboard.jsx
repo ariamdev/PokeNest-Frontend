@@ -32,6 +32,7 @@ const api = axios.create({
 const AdminDashboard = () => {
   const [petsData, setPetsData] = useState([]);
   const [errorMessage, setErrorMessage] = useState('');
+  const [manageMode, setManageMode] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -62,6 +63,28 @@ const AdminDashboard = () => {
     window.location.href = '/';
   };
 
+
+  const handleDelete = async (pokemonId) => {
+    const confirmDelete = window.confirm('¿Estás seguro de que deseas eliminar este Pokémon?');
+    if (!confirmDelete) return;
+
+    try {
+      await api.delete('/delete', {
+        data: { id: pokemonId },
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+      setPetsData((prevData) =>
+        prevData.filter((pokemon) => pokemon.id !== pokemonId)
+      );
+    } catch (error) {
+      console.error('Error eliminando el Pokémon:', error);
+      alert('No se pudo eliminar el Pokémon. Intenta nuevamente.');
+    }
+  };
+
+
   const groupedData = petsData.reduce((acc, pet) => {
     const user = acc.find((u) => u.userId === pet.userId);
     if (user) {
@@ -75,25 +98,41 @@ const AdminDashboard = () => {
   return (
     <div className="admin-dashboard">
       <div className="dashboard-container">
+        <div className="logo-container">
+          <img src={logo} alt="Logo" className="dashboard-logo" />
+        </div>
         <div className="header">
           <a href="/" onClick={handleLogout} className="logout-link">
             Salir
           </a>
-        </div>
-        <div className="logo-container">
-            <img src={logo} alt="Logo" className="dashboard-logo" />
         </div>
         {errorMessage ? (
           <p className="error-message">{errorMessage}</p>
         ) : (
           groupedData.map((user, index) => (
             <div key={index} className="user-section">
-              <h2 className="user-title">
-                ID: {user.userId} - Username: {user.username}
-              </h2>
+              <div className="user-title-container">
+                <h2 className="user-title">
+                  ID: {user.userId} - Username: {user.username}
+                </h2>
+                <span
+                  className="manage-pokemon"
+                  onClick={() => setManageMode((prev) => !prev)}
+                >
+                  Gestionar Pokémon
+                </span>
+              </div>
               <div className="pokemon-cards">
                 {user.pets.map((pokemon) => (
                   <div key={pokemon.id} className="pokemon-card-content">
+                    {manageMode && (
+                      <button
+                        className="delete-button"
+                        onClick={() => handleDelete(pokemon.id)}
+                      >
+                        &times;
+                      </button>
+                    )}
                     <div className="pokemon-image-wrapper">
                       <img
                         src={speciesCardImage[pokemon.species]}
