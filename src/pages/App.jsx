@@ -30,7 +30,7 @@ function App() {
       // Redirigir según el rol
       const role = response.data.role;
       if (role === 'ADMIN') {
-        window.location.href = '/admin-dashboard';
+        window.location.href = '/admin/getAll';
       } else if (role === 'USER') {
         window.location.href = '/user-dashboard';
       }
