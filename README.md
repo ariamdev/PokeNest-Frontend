@@ -13,6 +13,7 @@ where users can take care of their own Pokémon.
 In PokeNest, users can have more than one Pokémon, choosing between the first generation starters and Eevee and its evolutions, 
 as a virtual pet and perform various activities to take care of it and level it up. The project combines a backend made with Java in Spring Boot and a frontend made with REACT 
 generated through ChatGPT, persisting in a database in MYSQL, creating a nostalgic experience that reflects the dynamics of a "tamagotchi", but with the charisma and the Pokémon universe.
+You can see the backend code [here](https://github.com/ariamdev/PokeNest-Backend).
 
 ## ![Egg](https://raw.githubusercontent.com/msikma/pokesprite/master/items-outline/key-item/mystery-egg.png) Main functionalities
 
@@ -41,7 +42,6 @@ generated through ChatGPT, persisting in a database in MYSQL, creating a nostalg
 
 **Frontend with REACT:**
 - The final project of the bootcamp required the use of an AI for the frontend. In this project the REACT frontend was generated using ChatGPT.
-You can see the code [here](https://github.com/ariamdev/PokeNest-Frontend).
 
 
 ## ![Vs](https://raw.githubusercontent.com/msikma/pokesprite/master/items-outline/key-item/vs-recorder.png) Technologies
